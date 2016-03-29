@@ -1,7 +1,7 @@
 
-# Binary Star - _Alpha_
+# Binary Star: _Alpha_ - Server
 
-This directory will soon contain the in progress alpha version of a game/DSL called Binary Star.
+This directory will soon contain the server for the in progress alpha version
+of a game/DSL called Binary Star. The server will be written in Scala.
 
-The game will be broken down into two components, a server and client. The server will be written in Scala. The client will
-be written in Java using Processing.
+The game client can be found in [this](https://github.com/afishberg/binary-star-alpha-client) repository.
