@@ -13,4 +13,4 @@ dependencies {
 	compile 'org.scala-lang:scala-library:2.11.1'
 }
 
-mainClassName = 'binarystar.HelloWorld'
+mainClassName = 'binarystar.HelloWorld' //'simpleserver.SimpleServer'
