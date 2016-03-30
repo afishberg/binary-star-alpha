@@ -1,0 +1,18 @@
+//apply plugin: 'java'
+apply plugin: 'scala'
+apply plugin: 'application'
+
+// Require Java 8
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+//	compile 'org.processing:core:3.0.2'
+	compile 'org.scala-lang:scala-library:2.11.1'
+}
+
+mainClassName = 'HelloWorld'
