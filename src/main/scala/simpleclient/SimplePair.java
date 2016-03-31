@@ -1,6 +1,5 @@
 package simpleclient;
 
-import java.net.*;
 import java.io.*;
 
 public class SimplePair implements Serializable {
