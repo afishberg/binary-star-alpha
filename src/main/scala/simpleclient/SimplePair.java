@@ -3,11 +3,11 @@ package simpleclient;
 import java.io.*;
 
 public class SimplePair implements Serializable {
-	public String key;
-	public int value;
+    public String key;
+    public int value;
 
-	public SimplePair(String k, int v) {
-		this.key = k;
-		this.value = v;
-	}
+    public SimplePair(String k, int v) {
+        this.key = k;
+        this.value = v;
+    }
 }
