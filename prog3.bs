@@ -1,0 +1,41 @@
+void init() {
+  int g_flee = 0;
+  set_vel();
+}
+
+void main() {
+  double percent = get_hull() / get_hull_max();
+  if (percent > .2) {
+    aggressive();
+  } else {
+    flee();
+  }
+}
+
+void aggressive() {
+  if (radar(0) > 0 && can_fire()) {
+    fire();
+  }
+}
+
+void flee() {
+  int i = 0;
+  for (i = -15; i <= 15; i++) {
+    if (radar(i) > 0) {
+      g_flee = i;
+      break;
+    }
+  }
+  if (g_flee != 0) {
+    int turn;
+    if (g_flee > get_rot_max()) {
+      set_rot(get_rot_max());
+      g_flee -= get_rot_max();
+    } else if (g_flee < -get_rot_max()) {
+      set_rot(-get_rot_max());
+      g_flee += get_rot_max();
+    } else {
+      set_rot(g_flee);
+      g_flee = 0;
+    }
+}
