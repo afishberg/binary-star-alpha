@@ -38,4 +38,5 @@ void flee() {
       set_rot(g_flee);
       g_flee = 0;
     }
+  }
 }

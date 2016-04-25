@@ -1,0 +1,3 @@
+void init() {
+	g_flee += 5;
+}

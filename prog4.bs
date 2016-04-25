@@ -1,0 +1,8 @@
+void init() {
+  for (i = -15; i <= 15; i++) {
+    if (radar(i) > 0) {
+      g_flee = i;
+      break;
+    }
+  }
+}
