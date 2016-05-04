@@ -1,4 +1,6 @@
-package parser
+package testing
+
+import parser.BSParser
 
 object TestParser {
     def run(programFilename:String = "prog3.bs") = {

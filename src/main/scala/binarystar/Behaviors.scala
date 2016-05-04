@@ -17,7 +17,7 @@ trait Corporeal {
 }
 
 trait Movable extends Corporeal { // can move
-    def updatePos: Unit
+    def updatePos(): Unit
 }
 
 trait Velocity extends Movable {
@@ -49,7 +49,7 @@ trait Solid extends Corporeal { // can collide
 }
 
 trait Mortal { // can die
-    def isAlive(): Boolean
+    def isAlive: Boolean
     def death(): Unit
 }
 
@@ -57,20 +57,20 @@ trait Health extends Mortal {
     val MAX_HEALTH:Int
     var health:Int = MAX_HEALTH
 
-    def isAlive():Boolean = return health <= 0
+    def isAlive:Boolean = health <= 0
 }
 
 trait Expiration extends Mortal {
     val MAX_DURATION: Int
     var duration:Int = MAX_DURATION
 
-    def isAlive():Boolean = return duration > 0
+    def isAlive:Boolean = duration > 0
 }
 
 trait Allegiance extends Solid { // has ally
     var allegiance:Int = 0
 
-    def isAllied(other: Allegiance):Boolean = return this.allegiance == other.allegiance
+    def isAllied(other: Allegiance):Boolean = this.allegiance == other.allegiance
 }
 
 trait Explosive extends Expiration with Solid { // blows up when it collides with a Health

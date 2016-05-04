@@ -22,7 +22,7 @@ void flee() {
   int i = 0;
   for (i = -15; i <= 15; i++) {
     if (radar(i) > 0) {
-      g_flee = i;
+      g_flee = i+180;
       break;
     }
   }

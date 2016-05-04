@@ -6,18 +6,18 @@ import scala.util.parsing.combinator._
 
 object BSParser extends JavaTokenParsers with PackratParsers {
     //def apply(s: String): ParseResult[FuncDecl] = parseAll(pFuncDecl, s)
-    def apply(s: String): ParseResult[List[AST]] = parseAll(rep(pFuncDecl), s)
+    def apply(s: String): ParseResult[List[FuncDecl]] = parseAll(rep(pFuncDecl), s)
 
     def pFuncDecl: PackratParser[FuncDecl] =
         pType ~ pName ~ pParams ~ pBlock ^^
             { case rType ~ rName ~ rParams ~ rBlock => FuncDecl(rType, rName, rParams, rBlock) }
 
-    def pType: PackratParser[Type] = (
-            "int"       ^^^ IntTy()
-        |   "double"    ^^^ DoubleTy()
-        |   "bool"      ^^^ BoolTy()
-        |   "char"      ^^^ CharTy()
-        |   "void"      ^^^ VoidTy()
+    def pType: PackratParser[Ty] = (
+            "int"       ^^^ IntTy
+        |   "double"    ^^^ DoubleTy
+        |   "bool"      ^^^ BoolTy
+        |   "char"      ^^^ CharTy
+        |   "void"      ^^^ VoidTy
     )
 
     def pName: PackratParser[String] = ident ^^ { rIdent => rIdent }
@@ -95,8 +95,8 @@ object BSParser extends JavaTokenParsers with PackratParsers {
         |   pBoolOp ~ "<=" ~ pBoolOp ^^ { case rBoolOp1 ~ "<=" ~ rBoolOp2 => LeqOp(rBoolOp1, rBoolOp2) }
         |   pBoolOp ~ "==" ~ pBoolOp ^^ { case rBoolOp1 ~ "==" ~ rBoolOp2 => EqOp(rBoolOp1, rBoolOp2) }
         |   pBoolOp ~ "!=" ~ pBoolOp ^^ { case rBoolOp1 ~ "!=" ~ rBoolOp2 => NeqOp(rBoolOp1, rBoolOp2) }
-        |   pBoolOp ~ "||" ~ pBoolOp ^^ { case rBoolOp1 ~ "||" ~ rBoolOp2 => NeqOp(rBoolOp1, rBoolOp2) }
-        |   pBoolOp ~ "&&" ~ pBoolOp ^^ { case rBoolOp1 ~ "&&" ~ rBoolOp2 => NeqOp(rBoolOp1, rBoolOp2) }
+        |   pBoolOp ~ "||" ~ pBoolOp ^^ { case rBoolOp1 ~ "||" ~ rBoolOp2 => OrOp(rBoolOp1, rBoolOp2) }
+        |   pBoolOp ~ "&&" ~ pBoolOp ^^ { case rBoolOp1 ~ "&&" ~ rBoolOp2 => AndOp(rBoolOp1, rBoolOp2) }
         |   pPlusMinus
     )
 

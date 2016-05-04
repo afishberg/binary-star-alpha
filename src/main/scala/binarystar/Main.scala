@@ -1,6 +1,13 @@
-package binarystar;
-import parser.TestParser
+package binarystar
+
+import interpreter.TypeCheck
+import parser._
+import testing.{TestFuncMap, TestParser}
 
 object Main extends App {
-    TestParser.run()
+    println(TypeCheck.check(IntLit(3)))
+//    TestParser.run()
+
+//    TestFuncMap.run()
+
 }

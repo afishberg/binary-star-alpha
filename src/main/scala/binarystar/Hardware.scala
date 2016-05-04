@@ -3,7 +3,7 @@ package binarystar
 import parser.Literal
 
 sealed abstract class Hardware(creator: Actor) {
-    //def mkEnv():Map[String, () => Any]
+//    def mkEnv():Map[String, Object]
 }
 
 sealed abstract class Weapon(creator: Actor)    extends Hardware(creator)
@@ -18,8 +18,8 @@ class W_BasicBlaster(creator: Actor) extends Weapon(creator) {
     val bulletSpriteID = "BasicBlasterBullet"
     val bulletVel = 10
 
-    def mkEnv():Map[String, () => Any] = {
-        return Map("fire" -> fire, "can_fire" -> can_fire)
+    def mkEnv():Map[String, Object] = {
+        return Map("fire" -> fire _, "can_fire" -> can_fire _)
     }
 
     def fire(): Unit = {

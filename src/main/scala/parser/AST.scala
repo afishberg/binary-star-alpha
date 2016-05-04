@@ -2,16 +2,16 @@ package parser
 
 sealed abstract class AST
 
-case class FuncDecl(rtnTy: Type, name: String, param: List[VarDecl], body: Block) extends AST
+case class FuncDecl(rtnTy: Ty, name: String, param: List[VarDecl], body: Block) extends AST
 
-sealed abstract class Type()           extends AST // TODO add ArrayTy
-case class IntTy()        extends Type
-case class DoubleTy()     extends Type
-case class BoolTy()       extends Type
-case class CharTy()       extends Type
-case class VoidTy()       extends Type
+sealed abstract class Ty        extends AST // TODO add ArrayTy
+object IntTy                    extends Ty
+object DoubleTy                 extends Ty
+object BoolTy                   extends Ty
+object CharTy                   extends Ty
+object VoidTy                   extends Ty
 
-case class VarDecl(ty: Type, name: String) extends Statement
+object NumTy                    extends Ty // Used in TypeChecking, is a supertype for IntTy and DoubleTy
 
 sealed abstract class Expr()                extends AST
 sealed abstract class Literal()             extends Expr // TODO add ArrayLit
@@ -20,7 +20,10 @@ case class IntLit(i: Int)                   extends Literal
 case class DoubleLit(d: Double)             extends Literal
 case class BoolLit(b: Boolean)              extends Literal
 case class CharLit(ch: Char)                extends Literal
+
+// environment
 case class Var(name: String)                extends Expr
+case class Eval(call: Call)                 extends Expr
 
 // uniop
 case class NegateOp(expr: Expr)             extends Expr
@@ -40,11 +43,11 @@ case class LeqOp(left: Expr, right: Expr)   extends Expr
 case class GeqOp(left: Expr, right: Expr)   extends Expr
 case class EqOp(left: Expr, right: Expr)    extends Expr
 case class NeqOp(left: Expr, right: Expr)   extends Expr
-case class Eval(call: Call)                 extends Expr
 
-case class SubscriptOp(left: Expr, right: Expr)  extends Expr
+//case class SubscriptOp(left: Expr, right: Expr)  extends Expr
 
 sealed abstract class Statement                                                             extends AST
+case class VarDecl(ty: Ty, name: String)                                                    extends Statement
 case class Block(body: List[Statement])                                                     extends Statement // AST?
 case class IfThenElse(cond: Expr, bodyTrue: Block, bodyFalse: Block)                        extends Statement
 case class Call(name: String, args: List[Expr])                                             extends Statement
